@@ -73,6 +73,6 @@ if uploaded_file:
         pred_class, prob = predict(model, image)
 
         st.subheader(f"**Prediction:** {pred_class}")
-        st.write(f"**Confidence:** {prob:.4f}")
+
 
 
