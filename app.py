@@ -12,10 +12,9 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 # ------------------------------
 @st.cache_resource
 def load_model():
-    model = models.efficientnet_v2_s(weights=None)
+    model = models.efficientnet_b4(weights="IMAGENET1K_V1")
     in_features = model.classifier[1].in_features
     model.classifier[1] = nn.Linear(in_features, 1)
-
     state = torch.load("efficientnet_b4_best.pth", map_location=DEVICE)
     model.load_state_dict(state)
     model.to(DEVICE)
@@ -73,6 +72,7 @@ if uploaded_file:
         pred_class, prob = predict(model, image)
 
         st.subheader(f"**Prediction:** {pred_class}")
+
 
 
 
