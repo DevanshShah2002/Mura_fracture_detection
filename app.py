@@ -16,7 +16,7 @@ def load_model():
     in_features = model.classifier[1].in_features
     model.classifier[1] = nn.Linear(in_features, 1)
 
-    state = torch.load("efficientnet_v2_s_best.pth", map_location=DEVICE)
+    state = torch.load("efficientnet_b4_best.pth", map_location=DEVICE)
     model.load_state_dict(state)
     model.to(DEVICE)
     model.eval()
@@ -73,6 +73,7 @@ if uploaded_file:
         pred_class, prob = predict(model, image)
 
         st.subheader(f"**Prediction:** {pred_class}")
+
 
 
 
